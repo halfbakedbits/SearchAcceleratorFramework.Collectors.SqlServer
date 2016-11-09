@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://github.com/halfbakedbits/SearchAcceleratorFramework.Collectors.SqlServer/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/halfbakedbits/SearchAcceleratorFramework.Collectors.SqlServer</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes></releaseNotes>
+    <copyright></copyright>
+    <tags>Search SqlServer Database SearchAcceleratorFramework SearchAcceleratorFramework.Collectors Relevance</tags>
+  </metadata>
+</package>
