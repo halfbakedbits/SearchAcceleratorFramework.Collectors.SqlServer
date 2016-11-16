@@ -31,7 +31,8 @@ namespace SearchAcceleratorFramework.Collectors.SqlServer.Tests
       var statementProvider = A.Fake<IConsolidatedSqlStatementProvider>();
       var sqlStatement = "SELECT * FROM BUZZ";
 
-      A.CallTo(() => readerFactory.Create(sqlStatement)).Returns(reader);
+      var searchParameter = new SearchParameter(searchTerm);
+      A.CallTo(() => readerFactory.Create(sqlStatement, searchParameter)).Returns(reader);
       A.CallTo(() => statementProvider.CreateSqlSearchStatement(A<ISqlQueryStrategy[]>.That.IsSameSequenceAs(searchStrategies))).Returns(sqlStatement);
       A.CallTo(() => reader.Read()).Returns(true).NumberOfTimes(2);
       A.CallTo(() => reader.Current).ReturnsNextFromSequence(new WeightedItemResult {Id = 1, Weight = 10}, new WeightedItemResult {Id = 2, Weight = 20});
@@ -47,7 +48,7 @@ namespace SearchAcceleratorFramework.Collectors.SqlServer.Tests
       // Assert
       A.CallTo(() => statementProvider.CreateSqlSearchStatement(A<ISqlQueryStrategy[]>.That.IsSameSequenceAs(searchStrategies)))
         .MustHaveHappened(Repeated.Exactly.Once);
-      A.CallTo(() => readerFactory.Create(sqlStatement)).MustHaveHappened(Repeated.Exactly.Once);
+      A.CallTo(() => readerFactory.Create(sqlStatement, searchParameter)).MustHaveHappened(Repeated.Exactly.Once);
       A.CallTo(() => reader.Current).MustHaveHappened(Repeated.Exactly.Times(2));
       A.CallTo(() => reader.Dispose()).MustHaveHappened(Repeated.Exactly.Once);
 
@@ -75,7 +76,9 @@ namespace SearchAcceleratorFramework.Collectors.SqlServer.Tests
       var statementProvider = A.Fake<IConsolidatedSqlStatementProvider>();
       var sqlStatement = "SELECT * FROM BUZZ";
 
-      A.CallTo(() => readerFactory.Create(sqlStatement)).Returns(reader);
+      var searchParameter = new SearchParameter(searchTerm);
+
+      A.CallTo(() => readerFactory.Create(sqlStatement, searchParameter)).Returns(reader);
       A.CallTo(() => statementProvider.CreateSqlSearchStatement(searchStrategies)).Returns(sqlStatement);
       A.CallTo(() => reader.Read()).Returns(true).NumberOfTimes(2);
       A.CallTo(() => reader.Current).ReturnsNextFromSequence(new WeightedItemResult {Id = 1, Weight = 10}, new WeightedItemResult {Id = 2, Weight = 20});
@@ -87,7 +90,7 @@ namespace SearchAcceleratorFramework.Collectors.SqlServer.Tests
 
       // Assert
       A.CallTo(() => statementProvider.CreateSqlSearchStatement(searchStrategies)).MustHaveHappened(Repeated.Exactly.Once);
-      A.CallTo(() => readerFactory.Create(sqlStatement)).MustHaveHappened(Repeated.Exactly.Once);
+      A.CallTo(() => readerFactory.Create(sqlStatement, searchParameter)).MustHaveHappened(Repeated.Exactly.Once);
       A.CallTo(() => reader.Current).MustHaveHappened(Repeated.Exactly.Times(2));
       A.CallTo(() => reader.Dispose()).MustHaveHappened(Repeated.Exactly.Once);
 

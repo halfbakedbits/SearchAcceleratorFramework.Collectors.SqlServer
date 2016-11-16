@@ -49,6 +49,7 @@
     <Compile Include="ISqlDataReaderFactory.cs" />
     <Compile Include="ISqlItemResultDataReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchParameter.cs" />
     <Compile Include="SqlDataReaderFactory.cs" />
     <Compile Include="SqlItemResultDataReader.cs" />
     <Compile Include="SqlQueryStrategy.cs" />

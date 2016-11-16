@@ -2,6 +2,6 @@
 {
   public interface ISqlDataReaderFactory
   {
-    ISqlItemResultDataReader Create(string sqlQuery);
+    ISqlItemResultDataReader Create(string sqlQuery, SearchParameter searchParameter);
   }
 }

@@ -11,9 +11,9 @@ namespace SearchAcceleratorFramework.Collectors.SqlServer
       _connection = connection;
     }
 
-    public ISqlItemResultDataReader Create(string sqlQuery)
+    public ISqlItemResultDataReader Create(string sqlQuery, SearchParameter searchParameter)
     {
-      return new SqlItemResultDataReader(_connection, sqlQuery);
+      return new SqlItemResultDataReader(_connection, sqlQuery, searchParameter);
     }
   }
 }
