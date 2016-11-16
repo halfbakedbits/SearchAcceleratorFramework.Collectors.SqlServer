@@ -21,7 +21,8 @@ namespace SearchAcceleratorFramework.Collectors.SqlServer
     {
       var sqlQuery = _provider.CreateSqlSearchStatement(_searchStrategies);
 
-      using (var reader = _readerFactory.Create(sqlQuery))
+      var searchParameter = new SearchParameter(searchTerm);
+      using (var reader = _readerFactory.Create(sqlQuery, searchParameter))
       {
         while (reader.Read())
         {

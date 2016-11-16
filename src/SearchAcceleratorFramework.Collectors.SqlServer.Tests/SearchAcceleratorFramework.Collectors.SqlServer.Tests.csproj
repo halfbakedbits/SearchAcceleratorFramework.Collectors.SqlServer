@@ -68,6 +68,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Samples\Customer.cs" />
+    <Compile Include="SqlItemResultDataReaderTests.cs" />
     <Compile Include="SqlServerResultCollectorExamples.cs" />
   </ItemGroup>
   <ItemGroup>

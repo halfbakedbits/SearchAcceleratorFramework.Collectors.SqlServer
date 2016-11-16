@@ -11,7 +11,7 @@ namespace SearchAcceleratorFramework.Collectors.SqlServer
     private readonly int _weightColumnIndex;
     private bool _disposed;
 
-    public SqlItemResultDataReader(IDbConnection connection, string sqlQuery)
+    public SqlItemResultDataReader(IDbConnection connection, string sqlQuery, SearchParameter searchParameter)
     {
       _command = connection.CreateCommand();
 
@@ -19,8 +19,9 @@ namespace SearchAcceleratorFramework.Collectors.SqlServer
       _command.CommandText = sqlQuery;
       var parameter = _command.CreateParameter();
       parameter.Direction = ParameterDirection.Input;
-      parameter.Value = sqlQuery;
+      parameter.ParameterName = searchParameter.ParameterName;
       parameter.DbType = DbType.String;
+      parameter.Value = searchParameter.ParameterValue;
       _command.Parameters.Add(parameter);
 
       EnsureConnectionOpen(connection);
@@ -66,9 +67,7 @@ namespace SearchAcceleratorFramework.Collectors.SqlServer
         if (disposing)
         {
           if (!_reader.IsClosed)
-          {
             _reader.Close();
-          }
 
           _reader.Dispose();
           _command.Dispose();
@@ -81,9 +80,7 @@ namespace SearchAcceleratorFramework.Collectors.SqlServer
     private static void EnsureConnectionOpen(IDbConnection connection)
     {
       if (connection.State != ConnectionState.Open)
-      {
         connection.Open();
-      }
     }
   }
 }
